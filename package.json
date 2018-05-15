@@ -1,0 +1,22 @@
+{
+  "name": "node-js-template",
+  "version": "1.0.0",
+  "description": "flow node-js template",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "FloW",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "request": "^2.85.0",
+    "tape": "^4.9.0"
+  }
+}

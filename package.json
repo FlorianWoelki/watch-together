@@ -13,10 +13,10 @@
   "author": "FloW",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.3.7",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "request": "^2.85.0",
+    "socket.io": "^2.1.0",
     "tape": "^4.9.0"
   }
 }

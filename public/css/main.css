@@ -1,3 +1,22 @@
 #player-ui {
     margin-top: 50px;
 }
+
+.controls .timeline .line {
+    margin-top: 20px;
+    border: 0;
+    border-top: 1px solid #343a40;
+    position: relative;
+}
+
+.controls .timeline .dot {
+    margin-top: -7px;
+    height: 13px;
+    width: 13px;
+    position: relative;
+    border-width: 2px;
+    border-radius: 100px;
+    background-color: #343a40;
+    border-style: solid;
+    left: 0%;
+}

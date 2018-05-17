@@ -2,6 +2,10 @@
     margin-top: 50px;
 }
 
+.controls {
+    margin-bottom: 2px;
+}
+
 .controls .timeline .line {
     margin-top: 20px;
     border: 0;

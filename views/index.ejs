@@ -61,6 +61,8 @@
     <div id="player-ui">
       <div class="container h-100 d-flex justify-content-center">
         <div class="jumbotron my-auto">
+          <h4 id="video-title">Title: </h4>
+
           <div id="player"></div>
           
           <div class="controls">
@@ -131,7 +133,7 @@
         function onPlayerReady(event) {
           event.target.setVolume(5);
           startTimelineLoop();
-          //event.target.playVideo();
+          $('#video-title').append(player.getVideoData().title);
         }
   
         // This method gets called whenever the state of the player changes.
@@ -148,6 +150,9 @@
           }
         }
 
+        // This function will start the timeline loop.
+        // It will update the dot for the timeline, so that the timeline
+        // is accurate with the time of the video.
         function startTimelineLoop() {
           const progressBar = $('.timeline');
           const progressDot = $('.timeline .dot');

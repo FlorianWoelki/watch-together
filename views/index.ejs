@@ -23,7 +23,7 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Watch Together</a>
+      <a class="navbar-brand" href="#"><b>Watch Together</b></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,24 +31,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Play <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="#">How this works</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -97,6 +83,10 @@
     <script src="js/bootstrap.min.js"></script>
 		<script src="js/socket.io.js"></script>
     <script>
+        // Defining variables
+        const progressBar = $('.timeline');
+        const progressDot = $('.timeline .dot');
+
         // This code will setup socket io for the client.
         var socket = io.connect();
 
@@ -154,9 +144,6 @@
         // It will update the dot for the timeline, so that the timeline
         // is accurate with the time of the video.
         function startTimelineLoop() {
-          const progressBar = $('.timeline');
-          const progressDot = $('.timeline .dot');
-
           setInterval(function() {
             if (player == null || progressBar == null) {
               return;
@@ -166,6 +153,15 @@
             progressDot.css("left", fraction.toString() + "%");
           });
         }
+
+        // Whenever a user clicks on the timeline to jump to a position,
+        // the dot and the movie will jump to this position.
+        $('.timeline').click(function(event) {
+          var offset = $(this).offset();
+          var x = event.pageX - offset.left;
+          var timelineClick = x * player.getDuration() / $(this).width() - 2;
+          player.seekTo(timelineClick);
+        });
       </script>
   </body>
 </html>

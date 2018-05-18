@@ -1,9 +1,21 @@
+body {
+    background-color: #3c4249;
+}
+
+.jumbotron {
+    background-color: #b2b9c1;
+}
+
 #player-ui {
     margin-top: 50px;
 }
 
 .controls {
     margin-bottom: 2px;
+}
+
+.controls .timeline {
+    padding: 1px 0 1px 0;
 }
 
 .controls .timeline .line {

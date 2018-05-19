@@ -55,10 +55,10 @@
             <div class="row">
               <!-- Control buttons -->
               <div class="col-2">
-                <a href="#" class="btn btn-dark">
+                <a id="play-btn" href="#" class="btn btn-dark">
                   <span class="fa fa-play"></span> 
                 </a>
-                <a href="#" class="btn btn-dark">
+                <a id="pause-btn" href="#" class="btn btn-dark">
                   <span class="fa fa-pause"></span> 
                 </a>
               </div>
@@ -84,11 +84,13 @@
 		<script src="js/socket.io.js"></script>
     <script>
         // Defining variables
-        const progressBar = $('.timeline');
-        const progressDot = $('.timeline .dot');
+        const timeline = $('.timeline');
+        const timelineDot = $('.timeline .dot');
+        const playButton = $('#play-btn');
+        const pauseButton = $('#pause-btn');
 
         // This code will setup socket io for the client.
-        var socket = io.connect();
+        const socket = io.connect();
 
         // This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
@@ -145,22 +147,35 @@
         // is accurate with the time of the video.
         function startTimelineLoop() {
           setInterval(function() {
-            if (player == null || progressBar == null) {
+            if (player == null || timeline == null) {
               return;
             }
 
             var fraction = player.getCurrentTime() / player.getDuration() * 100;
-            progressDot.css("left", fraction.toString() + "%");
+            timelineDot.css("left", fraction.toString() + "%");
           });
         }
 
         // Whenever a user clicks on the timeline to jump to a position,
         // the dot and the movie will jump to this position.
-        $('.timeline').click(function(event) {
+        timeline.click(function(event) {
           var offset = $(this).offset();
           var x = event.pageX - offset.left;
           var timelineClick = x * player.getDuration() / $(this).width() - 2;
-          player.seekTo(timelineClick);
+          //player.seekTo(timelineClick);
+          socket.emit('playerEvent', 'time: ' + timelineClick);
+        });
+
+        // Whenever a user clicks on the play button,
+        // it will tell the other clients to play/resume the video.
+        playButton.click(function(event) {
+          socket.emit('playerEvent', 'play');
+        });
+
+        // Whenever a user clicks on the pause button,
+        // it will tell the other clients to puase the video.
+        pauseButton.click(function(event) {
+          socket.emit('playerEvent', 'pause');
         });
       </script>
   </body>

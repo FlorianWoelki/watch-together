@@ -12,5 +12,8 @@ const server = app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 const io = require('socket.io').listen(server)
 
 io.on('connection', function(socket) {
-    console.log('a user connected');
+    socket.on('playerEvent', function(str) {
+        console.log(str)
+    }) 
+    console.log('a user connected')
 })

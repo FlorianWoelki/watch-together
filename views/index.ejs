@@ -134,10 +134,10 @@
         function onPlayerStateChange(event) {
           switch (event.data) {
             case YT.PlayerState.PLAYING:
-              console.log('Playing video');
+              onPlayClicked();
               break;
             case YT.PlayerState.PAUSED:
-              console.log('Pausing video');
+              onPauseClicked();
               break;
           }
         }
@@ -169,14 +169,26 @@
         // Whenever a user clicks on the play button,
         // it will tell the other clients to play/resume the video.
         playButton.click(function(event) {
-          socket.emit('playerEvent', 'play');
+          onPlayClicked();
         });
 
         // Whenever a user clicks on the pause button,
         // it will tell the other clients to puase the video.
         pauseButton.click(function(event) {
-          socket.emit('playerEvent', 'pause');
+          onPauseClicked();
         });
+
+        // This function is a helper function to perform everything,
+        // whenever the play button is clicked.
+        function onPlayClicked() {
+          socket.emit('playerEvent', 'play');
+        }
+
+        // This function is a helper function to perform everything,
+        // whenever the pause button is clicked.
+        function onPauseClicked() {
+          socket.emit('playerEvent', 'pause');
+        }
       </script>
   </body>
 </html>

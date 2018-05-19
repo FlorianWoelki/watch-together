@@ -6,6 +6,14 @@ body {
     background-color: #b2b9c1;
 }
 
+#search-btn {
+    color: #28a745;
+}
+
+#search-btn:hover {
+    color: white;
+}
+
 #player-ui {
     margin-top: 50px;
 }

@@ -1,100 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>Watch Together</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <title>Watch Together</title>
 
-    <!-- Custom styles for this template -->
-    <link href="css/main.css" rel="stylesheet">
+  <!-- Material Design CSS files -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 
-    <!-- Font awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+  <!-- Custom styles for this template -->
+  <link href="css/main.css" rel="stylesheet">
 
-  <body>
+  <!-- Font awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#"><b>Watch Together</b></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Play <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">How this works</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Video link..." aria-label="Search">
-          <a id="search-btn" class="btn btn-outline-success my-2 my-sm-0">Search</a>
-        </form>
-      </div> <!-- /.navbar-collapse -->
-    </nav>
+<body>
 
-    <div id="player-ui">
-      <div class="container h-100 d-flex justify-content-center">
-        <div class="jumbotron my-auto">
-          <h4 id="video-title">Title: </h4>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer 
+              mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                    mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" name="search-input" id="fixed-header-drawer-exp">
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Watch Together</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Home</a>
+        <a class="mdl-navigation__link" href="">About</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content md-grid">
+      <div class="page-content mdl-cell mdl-cell--4-col mdl-cell--4-offset">
+        <div id="player-ui">
+          <div class="container h-100 d-flex justify-content-center">
+            <div class="jumbotron my-auto">
+              <h4 id="video-title">Title: </h4>
 
-          <div id="player"></div>
-          
-          <div class="controls">
-            <div class="row">
-              <!-- Control buttons -->
-              <div class="col-2">
-                <a id="play-btn" href="#" class="btn btn-dark">
-                  <span class="fa fa-play"></span> 
-                </a>
-                <a id="pause-btn" href="#" class="btn btn-dark">
-                  <span class="fa fa-pause"></span> 
-                </a>
-              </div>
-              <!-- Timeline -->
-              <div class="col-10">
-                <div class="timeline">
-                  <div class="line"></div>
-                  <div class="dot"></div>
+              <div id="player"></div>
+
+              <div class="controls">
+                <div class="mdl-grid">
+                  <!-- Control buttons -->
+                  <div class="mdl-cell mdl-cell--3-col">
+                    <button id="play-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                      <i class="material-icons">play_arrow</i>
+                    </button>
+                    <button id="pause-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                      <i class="material-icons">pause</i>
+                    </button>
+                  </div>
+                  <!-- Timeline -->
+                  <div class="mdl-cell mdl-cell--9-col">
+                    <div class="timeline">
+                      <div class="line"></div>
+                      <div class="dot"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <!-- /.controls -->
             </div>
-          </div> <!-- /.controls -->
+          </div>
+          <!-- /.container -->
         </div>
-      </div><!-- /.container -->
-    </div><!-- /#player-ui -->
+        <!-- /#player-ui -->
+      </div>
+      <!-- /.page-content -->
+    </main>
+  </div>
 
-    <!-- Bootstrap core JavaScript
+  <!-- Material core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/socket.io.js"></script>
-    <script src="js/client.io.js"></script>
-    <script>
-        // This function will check, if you clicked on search and then
-        // it will parse the video link and reload the page with the correct
-        // video.
-        $('#search-btn').click(function(event) {
-          const searchInput = $('#search-input').val();
-          if (searchInput.length == 0) {
-            console.log('Please insert the video link');
-            return;
-          }
-          console.log(searchInput);
-        })
-      </script>
-  </body>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <!-- Custom scripts -->
+  <script src="js/socket.io.js"></script>
+  <script src="js/client.io.js"></script>
+  <script>
+    // This function will check, if you clicked on search and then
+    // it will parse the video link and reload the page with the correct
+    // video.
+    $('#video-search').click(function (event) {
+      const searchInput = $('#search-input').val();
+      if (searchInput.length == 0) {
+        console.log('Please insert the video link');
+        return;
+      }
+      console.log(searchInput);
+    })
+  </script>
+</body>
+
 </html>

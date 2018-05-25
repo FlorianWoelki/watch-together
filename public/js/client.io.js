@@ -66,7 +66,7 @@ function startTimelineLoop() {
       return;
     }
 
-    var fraction = player.getCurrentTime() / player.getDuration() * 100;
+    const fraction = player.getCurrentTime() / player.getDuration() * 100;
     timelineDot.css("left", fraction.toString() + "%");
   });
 }

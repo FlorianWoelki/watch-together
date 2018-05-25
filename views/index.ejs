@@ -31,11 +31,11 @@
         <div class="mdl-layout-spacer"></div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                     mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
-            <i class="material-icons">search</i>
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="search-input">
+            <i id="search-input-btn" class="material-icons">search</i>
           </label>
           <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="text" name="search-input" id="fixed-header-drawer-exp">
+            <input class="mdl-textfield__input" type="text" placeholder="F0zOQhFQd9k" name="search-input" id="search-input">
           </div>
         </div>
       </div>
@@ -100,13 +100,12 @@
     // This function will check, if you clicked on search and then
     // it will parse the video link and reload the page with the correct
     // video.
-    $('#video-search').click(function (event) {
+    $('#search-input-btn').click(function (event) {
       const searchInput = $('#search-input').val();
       if (searchInput.length == 0) {
-        console.log('Please insert the video link');
         return;
       }
-      console.log(searchInput);
+      player.loadVideoById(searchInput);
     })
   </script>
 </body>

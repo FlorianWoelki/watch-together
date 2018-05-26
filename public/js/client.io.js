@@ -7,8 +7,10 @@ const pauseButton = $('#pause-btn');
 // This code will setup socket io for the client.
 const socket = io.connect();
 
+// Getting information about the connected clients
+// by the server.
 socket.on('connectedCount', function(count) {
-  console.log(count);
+  $('#connected-count').html(count);
 });
 
 // This code loads the IFrame Player API code asynchronously.
@@ -44,7 +46,8 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
   event.target.setVolume(5);
   startTimelineLoop();
-  $('#video-title').append(player.getVideoData().title);
+
+  $('#video-title').html(player.getVideoData().title);
 }
 
 // This method gets called whenever the state of the player changes.

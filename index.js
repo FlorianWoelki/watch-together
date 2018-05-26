@@ -15,5 +15,7 @@ io.on('connection', function(socket) {
     socket.on('playerEvent', function(str) {
         console.log(str)
     }) 
+
     console.log('a user connected')
+    io.sockets.emit('connectedCount', Object.keys(io.sockets.sockets).length)
 })

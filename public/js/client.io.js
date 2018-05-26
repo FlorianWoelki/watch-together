@@ -7,6 +7,10 @@ const pauseButton = $('#pause-btn');
 // This code will setup socket io for the client.
 const socket = io.connect();
 
+socket.on('connectedCount', function(count) {
+  console.log(count);
+});
+
 // This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 

@@ -6,13 +6,21 @@
     color: white;
 }
 
-#player-ui {
+.mdl-grid {
     margin-top: 50px;
 }
 
-h4, 
-h5 {
+#video-info {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+h4 {
     color: rgb(63,81,181);
+}
+
+h5 {
+    font-weight: 100;
 }
 
 .controls {

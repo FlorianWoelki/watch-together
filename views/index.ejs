@@ -47,68 +47,151 @@
         <a class="mdl-navigation__link" href="">About</a>
       </nav>
     </div>
-    <main class="mdl-layout__content md-grid">
-      <div class="page-content mdl-cell mdl-cell--4-col mdl-cell--4-offset">
-        <div id="player-ui">
-          <div class="container h-100 d-flex justify-content-center">
-            <div class="jumbotron my-auto">
-              <h4>Title: <span id="video-title"></span></h4>
-              <i><h5 style="margin-top: -5px">Users watching: <span id="connected-count">0</span></h5></i>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div class="mdl-grid">
+          <!-- Player UI cell -->
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset">
+            <div id="player-ui">
+              <div class="container h-100 d-flex justify-content-center">
+                <div class="jumbotron my-auto">
+                  <div id="player"></div>
 
-              <div id="player"></div>
-
-              <div class="controls">
-                <div class="mdl-grid">
-                  <!-- Control buttons -->
-                  <div class="mdl-cell mdl-cell--3-col">
-                    <button id="play-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-                      <i class="material-icons">play_arrow</i>
-                    </button>
-                    <button id="pause-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-                      <i class="material-icons">pause</i>
-                    </button>
+                  <div class="controls">
+                    <div class="mdl-grid">
+                      <!-- Control buttons -->
+                      <div class="mdl-cell mdl-cell--3-col">
+                        <button id="play-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                          <i class="material-icons">play_arrow</i>
+                        </button>
+                        <button id="pause-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                          <i class="material-icons">pause</i>
+                        </button>
+                      </div>
+                      <!-- Timeline -->
+                      <div class="mdl-cell mdl-cell--9-col">
+                        <div class="timeline">
+                          <div class="line"></div>
+                          <div class="dot"></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <!-- Timeline -->
-                  <div class="mdl-cell mdl-cell--9-col">
-                    <div class="timeline">
-                      <div class="line"></div>
-                      <div class="dot"></div>
+                  <!-- /.controls -->
+                </div>
+              </div>
+              <!-- /.container -->
+            </div>
+          </div>
+          <!-- /#player-ui -->
+
+          <!-- User and video info cell -->
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset">
+            <div class="container h-100 d-flex justify-content-center">
+              <div class="jumbotron my-auto">
+                <h4>Video information</h4>
+                <!-- Video info -->
+                <ul id="video-info" class="demo-list-item mdl-list">
+                  <li class="mdl-list__item">
+                    <h5>Video title:
+                      <span id="video-title"></span>
+                    </h5>
+                  </li>
+                </ul>
+
+                <!-- User info -->
+                <h4>User information</h4>
+                <h5>Users watching:
+                  <span id="connected-count">0</span>
+                </h5>
+                <ul class="demo-list-two mdl-list">
+                  <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-avatar">person</i>
+                      <span>Test User 1</span>
+                      <span class="mdl-list__item-sub-title">Admin</span>
+                    </span>
+                  </li>
+                  <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-avatar">person</i>
+                      <span>Test User 2</span>
+                      <span class="mdl-list__item-sub-title">Watcher</span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.mdl-grid -->
+      </div>
+    </main>
+
+    <!--<main class="mdl-layout__content md-grid">
+      <div class="page-content">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-offset">
+          <div id="player-ui">
+            <div class="container h-100 d-flex justify-content-center">
+              <div class="jumbotron my-auto">
+                <h4>Title: <span id="video-title"></span></h4>
+                <i><h5 style="margin-top: -5px">Users watching: <span id="connected-count">0</span></h5></i>
+
+                <div id="player"></div>
+
+                <div class="controls">
+                  <div class="mdl-grid">
+                    <!-- Control buttons
+                    <div class="mdl-cell mdl-cell--3-col">
+                      <button id="play-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                        <i class="material-icons">play_arrow</i>
+                      </button>
+                      <button id="pause-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                        <i class="material-icons">pause</i>
+                      </button>
+                    </div>
+                    <!-- Timeline
+                    <div class="mdl-cell mdl-cell--9-col">
+                      <div class="timeline">
+                        <div class="line"></div>
+                        <div class="dot"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <!-- /.controls
               </div>
-              <!-- /.controls -->
             </div>
+            <!-- /.container
           </div>
-          <!-- /.container -->
         </div>
-        <!-- /#player-ui -->
+        <!-- /#player-ui
       </div>
-      <!-- /.page-content -->
+      <!-- /.page-content
     </main>
-  </div>
+  </div>-->
 
-  <!-- Material core JavaScript
+    <!-- Material core JavaScript
     ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <!-- Custom scripts -->
-  <script src="js/socket.io.js"></script>
-  <script src="js/client.io.js"></script>
-  <script>
-    // This function will check, if you clicked on search and then
-    // it will parse the video link and reload the page with the correct
-    // video.
-    $('#search-input-btn').click(function (event) {
-      const searchInput = $('#search-input').val();
-      if (searchInput.length == 0) {
-        return;
-      }
-      player.loadVideoById(searchInput);
-    })
-  </script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="js/socket.io.js"></script>
+    <script src="js/client.io.js"></script>
+    <script>
+      // This function will check, if you clicked on search and then
+      // it will parse the video link and reload the page with the correct
+      // video.
+      $('#search-input-btn').click(function (event) {
+        const searchInput = $('#search-input').val();
+        if (searchInput.length == 0) {
+          return;
+        }
+        player.loadVideoById(searchInput);
+      })
+    </script>
 </body>
 
 </html>

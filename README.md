@@ -10,7 +10,7 @@ watch-together is a simple and made with material design Watch2Gether clone.
 * **Florian Woelki** - *Initial work* - [FlorianWoelki](https://github.com/FlorianWoelki)
 
 ## License
-Not yet.
+This project is licensed to the MIT license.
 
 ## Acknowledgments
 * Thanks to Watch2Gether for this good practice example

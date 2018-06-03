@@ -1,7 +1,7 @@
 # watch-together
 watch-together is a simple and made with material design Watch2Gether clone.
 
-## Testing
+## Test the project
 You can test it on the github page or you can install it by yourself.
 Just do the following:
 ### Installing
@@ -18,7 +18,7 @@ npm install
 and you are ready to go.
 
 ## Built With
-* [Node JS](https://nodejs.org/en/) - 
+* [Node JS](https://nodejs.org/en/)
 * [Material Design Library](https://getmdl.io/)
 * [SocketIO](https://socket.io/)
 

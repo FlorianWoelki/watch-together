@@ -15,7 +15,14 @@ Then you need to run in your directory:
 npm install
 ```
 
-and you are ready to go.
+and now you are able to execute the command
+```
+npm start
+```
+
+and it will start the server side code.
+
+Now you need to run the index file and you see the watch-together clone.
 
 ## Built With
 * [Node JS](https://nodejs.org/en/)

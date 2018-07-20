@@ -17,13 +17,23 @@ socket.on('connectedCount', function (count) {
 // on the client side.
 socket.on('pauseVideo', () => {
     player.pauseVideo()
-})
+});
 
 // Everytime a user plays the video it will play the video
 // on the client side.
 socket.on('playVideo', () => {
     player.playVideo()
-})
+});
+
+$('.close').click(() => {
+    let usernameInput = $('#username-input').val();
+
+    socket.emit('userJoin', usernameInput)
+});
+
+socket.on('userJoin', (username) => {
+    $('#user-list').append('<li class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><i class="material-icons mdl-list__item-avatar">person</i><span>' + username + '</span><span class="mdl-list__item-sub-title">Admin</span></span></li>');
+});
 
 // This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');

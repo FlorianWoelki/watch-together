@@ -9,9 +9,21 @@ const socket = io.connect();
 
 // Getting information about the connected clients
 // by the server.
-socket.on('connectedCount', function(count) {
-  $('#connected-count').html(count);
+socket.on('connectedCount', function (count) {
+    $('#connected-count').html(count);
 });
+
+// Everytime a user pause the video it will pause the video
+// on the client side.
+socket.on('pauseVideo', () => {
+    player.pauseVideo()
+})
+
+// Everytime a user plays the video it will play the video
+// on the client side.
+socket.on('playVideo', () => {
+    player.playVideo()
+})
 
 // This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
@@ -24,90 +36,90 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // after the API code downloads.
 var player;
 function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '480',
-    width: '720',
-    videoId: 'F0zOQhFQd9k',
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    },
-    playerVars: {
-      'controls': 0,
-      'disablekb': 1,
-      'modestbranding': 0,
-      'rel': 0,
-      'showinfo': 0
-    }
-  });
+    player = new YT.Player('player', {
+        height: '480',
+        width: '720',
+        videoId: 'F0zOQhFQd9k',
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        },
+        playerVars: {
+            'controls': 0,
+            'disablekb': 1,
+            'modestbranding': 0,
+            'rel': 0,
+            'showinfo': 0
+        }
+    });
 }
 
 // This method gets called when the player is ready to go.
 function onPlayerReady(event) {
-  event.target.setVolume(5);
-  startTimelineLoop();
+    event.target.setVolume(5);
+    startTimelineLoop();
 
-  $('#video-title').html(player.getVideoData().title);
+    $('#video-title').html(player.getVideoData().title);
 }
 
 // This method gets called whenever the state of the player changes.
 // If someone pressed the play button (state=1) this method will be called
 // and it will notify all other connected clients that the video plays.
 function onPlayerStateChange(event) {
-  switch (event.data) {
-    case YT.PlayerState.PLAYING:
-      onPlayClicked();
-      break;
-    case YT.PlayerState.PAUSED:
-      onPauseClicked();
-      break;
-  }
+    switch (event.data) {
+        case YT.PlayerState.PLAYING:
+            onPlayClicked();
+            break;
+        case YT.PlayerState.PAUSED:
+            onPauseClicked();
+            break;
+    }
 }
 
 // This function will start the timeline loop.
 // It will update the dot for the timeline, so that the timeline
 // is accurate with the time of the video.
 function startTimelineLoop() {
-  setInterval(function() {
-    if (player == null || timeline == null) {
-      return;
-    }
+    setInterval(function () {
+        if (player == null || timeline == null) {
+            return;
+        }
 
-    const fraction = player.getCurrentTime() / player.getDuration() * 100;
-    timelineDot.css("left", fraction.toString() + "%");
-  });
+        const fraction = player.getCurrentTime() / player.getDuration() * 100;
+        timelineDot.css("left", fraction.toString() + "%");
+    });
 }
 
 // Whenever a user clicks on the timeline to jump to a position,
 // the dot and the movie will jump to this position.
-timeline.click(function(event) {
-  var offset = $(this).offset();
-  var x = event.pageX - offset.left;
-  var timelineClick = x * player.getDuration() / $(this).width() - 2;
-  //player.seekTo(timelineClick);
-  socket.emit('playerEvent', 'time: ' + timelineClick);
+timeline.click(function (event) {
+    var offset = $(this).offset();
+    var x = event.pageX - offset.left;
+    var timelineClick = x * player.getDuration() / $(this).width() - 2;
+    //player.seekTo(timelineClick);
+    socket.emit('playerEvent', 'time: ' + timelineClick);
 });
 
 // Whenever a user clicks on the play button,
 // it will tell the other clients to play/resume the video.
-playButton.click(function(event) {
-  onPlayClicked();
+playButton.click(function (event) {
+    onPlayClicked();
 });
 
 // Whenever a user clicks on the pause button,
 // it will tell the other clients to puase the video.
-pauseButton.click(function(event) {
-  onPauseClicked();
+pauseButton.click(function (event) {
+    onPauseClicked();
 });
 
 // This function is a helper function to perform everything,
 // whenever the play button is clicked.
 function onPlayClicked() {
-  socket.emit('playerEvent', 'play');
+    socket.emit('playerEvent', 'play');
 }
 
 // This function is a helper function to perform everything,
 // whenever the pause button is clicked.
 function onPauseClicked() {
-  socket.emit('playerEvent', 'pause');
+    socket.emit('playerEvent', 'pause');
 }

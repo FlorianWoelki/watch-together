@@ -165,6 +165,8 @@
                 player.loadVideoById(searchInput);
             })
 
+            // Set a timeout before the dialog pops out, because the style needs
+            // to be load.
             setTimeout(function () {
                 var usernameDialog = document.querySelector('#username-dialog');
                 usernameDialog.showModal();

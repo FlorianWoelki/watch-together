@@ -49,3 +49,7 @@ h5 {
     border-style: solid;
     left: 0%;
 }
+
+#search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}

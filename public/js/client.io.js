@@ -16,24 +16,36 @@ socket.on('connectedCount', function (count) {
 // Everytime a user pause the video it will pause the video
 // on the client side.
 socket.on('pauseVideo', () => {
-    player.pauseVideo()
+    player.pauseVideo();
 });
 
 // Everytime a user plays the video it will play the video
 // on the client side.
 socket.on('playVideo', () => {
-    player.playVideo()
+    player.playVideo();
 });
 
 $('.close').click(() => {
     let usernameInput = $('#username-input').val();
 
-    socket.emit('userJoin', usernameInput)
+    socket.emit('userJoin', usernameInput);
 });
 
 socket.on('userJoin', (username) => {
-    $('#user-list').append('<li class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><i class="material-icons mdl-list__item-avatar">person</i><span>' + username + '</span><span class="mdl-list__item-sub-title">Admin</span></span></li>');
+    $('#user-list').append('<li class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><i class="material-icons mdl-list__item-avatar">person</i><span class="username">' + username + '</span><span class="mdl-list__item-sub-title">Admin</span></span></li>');
 });
+
+socket.on('userLeave', (username) => {
+    let users = document.getElementById('user-list').getElementsByClassName('username');
+    for (var i = 0; i < users.length; i++) {
+        let user = users[i].innerText;
+
+        if (username === user) {
+            var li = users[i].parentElement.parentElement; // Get the li element of the username
+            document.getElementById('user-list').removeChild(li); // Remove li from the ul
+        }
+    }
+})
 
 // This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');

@@ -48,5 +48,12 @@ io.on('connection', function (socket) {
         io.sockets.emit('connectedCount', Object.keys(io.sockets.sockets).length)
     })
 
+    socket.on('disconnect', function () {
+        let username = players[id]
+        io.sockets.emit('userLeave', username)
+        io.sockets.emit('connectedCount', Object.keys(io.sockets.sockets).length)
+        delete players[id]
+    })
+
     console.log('a user connected')
 })

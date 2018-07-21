@@ -25,16 +25,20 @@ socket.on('playVideo', () => {
     player.playVideo();
 });
 
+// Check if the dialog close button is pressed and emit the username
+// to the server.
 $('.close').click(() => {
     let usernameInput = $('#username-input').val();
 
     socket.emit('userJoin', usernameInput);
 });
 
+// If a user joins it will append it to the user list.
 socket.on('userJoin', (username) => {
     $('#user-list').append('<li class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><i class="material-icons mdl-list__item-avatar">person</i><span class="username">' + username + '</span><span class="mdl-list__item-sub-title">Admin</span></span></li>');
 });
 
+// If a user leaves it will be removed from the user list.
 socket.on('userLeave', (username) => {
     let users = document.getElementById('user-list').getElementsByClassName('username');
     for (var i = 0; i < users.length; i++) {

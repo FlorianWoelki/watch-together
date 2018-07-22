@@ -156,6 +156,11 @@
             setTimeout(function () {
                 var usernameDialog = document.querySelector('#username-dialog');
                 usernameDialog.showModal();
+                window.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        e.preventDefault()
+                    }
+                })
 
                 usernameDialog.querySelector('.close').addEventListener('click', function () {
                     usernameDialog.close();

@@ -16,14 +16,14 @@ const io = require('socket.io').listen(server)
 
 var players = {}
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
     let id = socket.id;
 
-    Object.keys(players).forEach(function (key) {
+    Object.keys(players).forEach((key) => {
         socket.emit('userJoin', players[key])
     })
 
-    socket.on('playerEvent', function (str) {
+    socket.on('playerEvent', (str) => {
         switch (str) {
             case 'play':
                 io.sockets.emit('playVideo')
@@ -34,7 +34,7 @@ io.on('connection', function (socket) {
         }
     })
 
-    socket.on('userJoin', function (username) {
+    socket.on('userJoin', (username) => {
         if (!username) {
             let generatedUsername = 'User ' + Object.keys(io.sockets.sockets).length
             username = generatedUsername
@@ -48,7 +48,7 @@ io.on('connection', function (socket) {
         io.sockets.emit('connectedCount', Object.keys(io.sockets.sockets).length)
     })
 
-    socket.on('disconnect', function () {
+    socket.on('disconnect', () => {
         let username = players[id]
         io.sockets.emit('userLeave', username)
         io.sockets.emit('connectedCount', Object.keys(io.sockets.sockets).length)

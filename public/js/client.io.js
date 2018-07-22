@@ -9,7 +9,7 @@ const socket = io.connect();
 
 // Getting information about the connected clients
 // by the server.
-socket.on('connectedCount', function (count) {
+socket.on('connectedCount', (count) => {
     $('#connected-count').html(count);
 });
 
@@ -106,7 +106,7 @@ function onPlayerStateChange(event) {
 // It will update the dot for the timeline, so that the timeline
 // is accurate with the time of the video.
 function startTimelineLoop() {
-    setInterval(function () {
+    setInterval(() => {
         if (player == null || timeline == null) {
             return;
         }
@@ -118,7 +118,7 @@ function startTimelineLoop() {
 
 // Whenever a user clicks on the timeline to jump to a position,
 // the dot and the movie will jump to this position.
-timeline.click(function (event) {
+timeline.click((event) => {
     var offset = $(this).offset();
     var x = event.pageX - offset.left;
     var timelineClick = x * player.getDuration() / $(this).width() - 2;
@@ -128,13 +128,13 @@ timeline.click(function (event) {
 
 // Whenever a user clicks on the play button,
 // it will tell the other clients to play/resume the video.
-playButton.click(function (event) {
+playButton.click((event) => {
     onPlayClicked();
 });
 
 // Whenever a user clicks on the pause button,
 // it will tell the other clients to puase the video.
-pauseButton.click(function (event) {
+pauseButton.click((event) => {
     onPauseClicked();
 });
 

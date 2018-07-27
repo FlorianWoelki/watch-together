@@ -14,7 +14,27 @@ app.get('/', (req, res) => res.render('index'))
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`))
 const io = require('socket.io').listen(server)
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.ejs')
+})
+
 var players = {}
+
+//const Room = require('./Room')
+//var testRoom = new Room('test room', io)
+
+app.get('/:id', (req, res) => {
+    console.log(req.params['id'])
+    // @todo - add socket io join room and leave functionality, not using oop, maybe for later...
+    function joinRoom(socket, room) {
+        if (socket.room) {
+            socket.leave(socket.room)
+        }
+        socket.join(room)
+        socket.room = room
+        console.info(socket.id + ' joined room ' + room, socket.room)
+    }
+})
 
 io.on('connection', (socket) => {
     let id = socket.id;

@@ -9,8 +9,8 @@ class Room {
 
     listenOnRoom() {
         this.namespace.on('connection', (socket) => {
+            console.log('joining room ' + socket.id)
             socket.on('disconnect', (msg) => {
-
             });
         });
     }

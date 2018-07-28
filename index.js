@@ -19,25 +19,31 @@ app.get('/', (req, res) => {
 })
 
 var players = {}
+var playersInRoom = {}
 
 //const Room = require('./Room')
 //var testRoom = new Room('test room', io)
 
-app.get('/:id', (req, res) => {
-    console.log(req.params['id'])
-    // @todo - add socket io join room and leave functionality, not using oop, maybe for later...
-    function joinRoom(socket, room) {
-        if (socket.room) {
-            socket.leave(socket.room)
-        }
-        socket.join(room)
-        socket.room = room
-        console.info(socket.id + ' joined room ' + room, socket.room)
+function joinRoom(socket, room) {
+    if (socket.room) {
+        socket.leave(socket.room)
     }
+    socket.join(room)
+    socket.room = room
+    console.info(socket.id + ' joined room ' + room)
+}
+
+app.get('/:id', (req, res) => {
+    //console.log(req.params['id'])
+    // @todo - add socket io join room and leave functionality, not using oop, maybe for later...
+    res.render('index')
 })
 
 io.on('connection', (socket) => {
     let id = socket.id;
+
+    joinRoom(socket, 'abc')
+    players[id] = 'abc'
 
     Object.keys(players).forEach((key) => {
         socket.emit('userJoin', players[key])

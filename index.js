@@ -34,16 +34,22 @@ function joinRoom(socket, room) {
 }
 
 app.get('/:id', (req, res) => {
-    //console.log(req.params['id'])
+    let room = req.params['id']
     // @todo - add socket io join room and leave functionality, not using oop, maybe for later...
-    res.render('index')
+    if (room != 'favicon.ico') {
+        io.on('connection', (socket) => {
+            let id = socket.id
+
+            joinRoom(socket, room)
+            players[id] = room
+        })
+
+        res.render('index')
+    }
 })
 
 io.on('connection', (socket) => {
     let id = socket.id;
-
-    joinRoom(socket, 'abc')
-    players[id] = 'abc'
 
     Object.keys(players).forEach((key) => {
         socket.emit('userJoin', players[key])

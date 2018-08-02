@@ -102,6 +102,7 @@
                     <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset">
                         <div class="container h-100 d-flex justify-content-center">
                             <div class="jumbotron my-auto">
+                                <% if (locals.room) { %><h4>Room: <%= room %></h4><% } %>
                                 <h4>Video information</h4>
                                 <!-- Video info -->
                                 <ul id="video-info" class="demo-list-item mdl-list">

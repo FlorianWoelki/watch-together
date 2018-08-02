@@ -9,20 +9,12 @@ require('dotenv').config()
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('index'))
 
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`))
 const io = require('socket.io').listen(server)
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.ejs')
-})
-
 var players = {}
 var playersInRoom = {}
-
-//const Room = require('./Room')
-//var testRoom = new Room('test room', io)
 
 function joinRoom(socket, room) {
     if (socket.room) {
@@ -44,8 +36,20 @@ app.get('/:id', (req, res) => {
             players[id] = room
         })
 
-        res.render('index')
+        res.render('index', {
+            room: room
+        })
     }
+})
+
+// If user connect to normal page without id
+// => generate id and send him to this page
+app.get('/', (req, res) => {
+    let generatedRoom = guid()
+    res.writeHead(302, {
+        'Location': '/' + generatedRoom
+    })
+    res.end()
 })
 
 io.on('connection', (socket) => {

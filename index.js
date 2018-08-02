@@ -14,7 +14,6 @@ const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`))
 const io = require('socket.io').listen(server)
 
 var players = {}
-var playersInRoom = {}
 
 function joinRoom(socket, room) {
     if (socket.room) {
@@ -33,7 +32,6 @@ app.get('/:id', (req, res) => {
             let id = socket.id
 
             joinRoom(socket, room)
-            players[id] = room
         })
 
         res.render('index', {
@@ -52,20 +50,20 @@ app.get('/', (req, res) => {
     res.end()
 })
 
-io.on('connection', (socket) => {
-    let id = socket.id;
+function broadcastToRoom(room, event) {
+    io.to(room).emit(event)
+}
 
-    Object.keys(players).forEach((key) => {
-        socket.emit('userJoin', players[key])
-    })
+io.on('connection', (socket) => {
+    let id = socket.id
 
     socket.on('playerEvent', (str) => {
         switch (str) {
             case 'play':
-                io.sockets.emit('playVideo')
+                broadcastToRoom(socket.room, 'playVideo')
                 break
             case 'pause':
-                io.sockets.emit('pauseVideo')
+                broadcastToRoom(socket.room, 'pauseVideo')
                 break
         }
     })
@@ -75,19 +73,33 @@ io.on('connection', (socket) => {
             let generatedUsername = 'User ' + Object.keys(io.sockets.sockets).length
             username = generatedUsername
 
-            io.sockets.emit('userJoin', generatedUsername)
+            io.to(socket.room).emit('userJoin', generatedUsername)
         } else {
-            io.sockets.emit('userJoin', username)
+            io.to(socket.room).emit('userJoin', username)
         }
 
         players[id] = username
-        io.sockets.emit('connectedCount', Object.keys(io.sockets.sockets).length)
+        io.in(socket.room).clients((err, clients) => {
+            io.to(socket.room).emit('connectedCount', clients.length)
+        })
+
+        io.in(socket.room).clients((err, clients) => {
+            clients.forEach((clientId) => {
+                if (clientId != id) {
+                    socket.emit('userJoin', players[clientId])
+                }
+            })
+        })
     })
 
     socket.on('disconnect', () => {
         let username = players[id]
-        io.sockets.emit('userLeave', username)
-        io.sockets.emit('connectedCount', Object.keys(io.sockets.sockets).length)
+        io.to(socket.room).emit('userLeave', username)
+
+        io.in(socket.room).clients((err, clients) => {
+            io.to(socket.room).emit('connectedCount', clients.length)
+        })
+
         delete players[id]
     })
 

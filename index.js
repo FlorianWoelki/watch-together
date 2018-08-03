@@ -57,13 +57,17 @@ function broadcastToRoom(room, event) {
 io.on('connection', (socket) => {
     let id = socket.id
 
-    socket.on('playerEvent', (str) => {
-        switch (str) {
+    socket.on('playerEvent', (data) => {
+        switch (data.event) {
             case 'play':
                 broadcastToRoom(socket.room, 'playVideo')
                 break
             case 'pause':
                 broadcastToRoom(socket.room, 'pauseVideo')
+                break
+            case 'time':
+                const timelineClick = data.timelineClick
+                io.to(socket.room).emit('timelineClick', timelineClick)
                 break
         }
     })

@@ -25,6 +25,10 @@ socket.on('playVideo', () => {
     player.playVideo();
 });
 
+socket.on('timelineClick', (timelineClick) => {
+    player.seekTo(timelineClick);
+})
+
 // Check if the dialog close button is pressed and emit the username
 // to the server.
 $('.close').click(() => {
@@ -118,12 +122,12 @@ function startTimelineLoop() {
 
 // Whenever a user clicks on the timeline to jump to a position,
 // the dot and the movie will jump to this position.
-timeline.click((event) => {
+timeline.click(function(event) {
     var offset = $(this).offset();
     var x = event.pageX - offset.left;
     var timelineClick = x * player.getDuration() / $(this).width() - 2;
     //player.seekTo(timelineClick);
-    socket.emit('playerEvent', 'time: ' + timelineClick);
+    socket.emit('playerEvent', { 'event': 'time', 'timelineClick': timelineClick });
 });
 
 // Whenever a user clicks on the play button,
@@ -141,11 +145,11 @@ pauseButton.click((event) => {
 // This function is a helper function to perform everything,
 // whenever the play button is clicked.
 function onPlayClicked() {
-    socket.emit('playerEvent', 'play');
+    socket.emit('playerEvent', { 'event': 'play' });
 }
 
 // This function is a helper function to perform everything,
 // whenever the pause button is clicked.
 function onPauseClicked() {
-    socket.emit('playerEvent', 'pause');
+    socket.emit('playerEvent', { 'event': 'pause' });
 }

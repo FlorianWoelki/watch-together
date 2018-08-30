@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "node test.js"
+    "test": "mocha"
   },
   "keywords": [
     "node"
@@ -20,5 +20,9 @@
     "request": "^2.85.0",
     "socket.io": "^2.1.0",
     "tape": "^4.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }

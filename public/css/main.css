@@ -19,6 +19,10 @@
     font-size: 20px;
 }
 
+.divider {
+    border-top: 1px solid #cfcfcf;
+}
+
 h4 {
     color: rgb(63,81,181);
 }

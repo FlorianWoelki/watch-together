@@ -107,9 +107,14 @@
                                 <!-- Video info -->
                                 <ul id="video-info" class="demo-list-item mdl-list">
                                     <li class="mdl-list__item">
-                                        <h5>Video title:
+                                        <p>Video title:
                                             <span id="video-title"></span>
-                                        </h5>
+                                        </p>
+                                    </li>
+                                    <li class="mdl-list__item">
+                                        <p>Video ID:
+                                            <span id="video-id"></span>
+                                        </p>
                                     </li>
                                 </ul>
                                 <!-- /Video info -->
@@ -150,18 +155,29 @@
                     return;
                 }
                 player.loadVideoById(searchInput);
-            })
+
+                setTimeout(() => {
+                    changeVideoInformation();
+                }, 2000);
+            });
+
+            // Check if in searchbar enter key is pressed
+            $('#search-input').keypress((e) => {
+                if (e.which === 13) { // Pressed 'enter' key
+                    $('#search-input-btn').click();
+                }
+            });
 
             // Set a timeout before the dialog pops out, because the style needs
             // to be load.
-            setTimeout(function () {
+            setTimeout(() => {
                 var usernameDialog = document.querySelector('#username-dialog');
                 usernameDialog.showModal();
                 window.addEventListener('keydown', function (e) {
                     if (e.key === 'Escape') {
-                        e.preventDefault()
+                        e.preventDefault();
                     }
-                })
+                });
 
                 usernameDialog.querySelector('.close').addEventListener('click', function () {
                     usernameDialog.close();

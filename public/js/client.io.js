@@ -89,7 +89,7 @@ function onPlayerReady(event) {
     event.target.setVolume(5);
     startTimelineLoop();
 
-    $('#video-title').html(player.getVideoData().title);
+    changeVideoInformation();
 }
 
 // This method gets called whenever the state of the player changes.
@@ -122,7 +122,7 @@ function startTimelineLoop() {
 
 // Whenever a user clicks on the timeline to jump to a position,
 // the dot and the movie will jump to this position.
-timeline.click(function(event) {
+timeline.click(function (event) {
     var offset = $(this).offset();
     var x = event.pageX - offset.left;
     var timelineClick = x * player.getDuration() / $(this).width() - 2;
@@ -141,6 +141,11 @@ playButton.click((event) => {
 pauseButton.click((event) => {
     onPauseClicked();
 });
+
+function changeVideoInformation() {
+    $('#video-title').text(player.getVideoData().title);
+    $('#video-id').text(player.getVideoData().video_id);
+}
 
 // This function is a helper function to perform everything,
 // whenever the play button is clicked.

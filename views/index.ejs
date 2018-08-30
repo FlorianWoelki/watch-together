@@ -105,7 +105,11 @@
                     <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset">
                         <div class="container h-100 d-flex justify-content-center">
                             <div class="jumbotron my-auto">
-                                <% if (locals.room) { %><h4>Room: <%= room %></h4><% } %>
+                                <% if (locals.room) { %>
+                                    <h4>Room:
+                                        <%= room %>
+                                    </h4>
+                                <% } %>
                                 <h4>Video information</h4>
                                 <!-- Video info -->
                                 <ul id="video-info" class="demo-list-item mdl-list">
@@ -138,55 +142,56 @@
                 <!-- /.mdl-grid -->
             </div>
         </main>
+    </div>
 
-        <!-- Material core JavaScript
-    ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-        <!-- Custom scripts -->
-        <script src="js/socket.io.js"></script>
-        <script src="js/client.io.js"></script>
-        <script>
-            // This function will check, if you clicked on search and then
-            // it will parse the video link and reload the page with the correct
-            // video.
-            $('#search-input-btn').click(function (event) {
-                const searchInput = $('#search-input').val();
-                if (searchInput.length == 0) {
-                    return;
-                }
-                player.loadVideoById(searchInput);
+    <!-- Material core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="js/socket.io.js"></script>
+    <script src="js/client.io.js"></script>
+    <script>
+        // This function will check, if you clicked on search and then
+        // it will parse the video link and reload the page with the correct
+        // video.
+        $('#search-input-btn').click(function (event) {
+            const searchInput = $('#search-input').val();
+            if (searchInput.length == 0) {
+                return;
+            }
+            player.loadVideoById(searchInput);
 
-                setTimeout(() => {
-                    changeVideoInformation();
-                }, 2000);
-            });
-
-            // Check if in searchbar enter key is pressed
-            $('#search-input').keypress((e) => {
-                if (e.which === 13) { // Pressed 'enter' key
-                    $('#search-input-btn').click();
-                }
-            });
-
-            // Set a timeout before the dialog pops out, because the style needs
-            // to be load.
             setTimeout(() => {
-                var usernameDialog = document.querySelector('#username-dialog');
-                usernameDialog.showModal();
-                window.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        e.preventDefault();
-                    }
-                });
+                changeVideoInformation();
+            }, 2000);
+        });
 
-                usernameDialog.querySelector('.close').addEventListener('click', () => {
-                    usernameDialog.close();
-                });
-            }, 1000);
-        </script>
+        // Check if in searchbar enter key is pressed
+        $('#search-input').keypress((e) => {
+            if (e.which === 13) { // Pressed 'enter' key
+                $('#search-input-btn').click();
+            }
+        });
+
+        // Set a timeout before the dialog pops out, because the style needs
+        // to be load.
+        setTimeout(() => {
+            var usernameDialog = document.querySelector('#username-dialog');
+            usernameDialog.showModal();
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                }
+            });
+
+            usernameDialog.querySelector('.close').addEventListener('click', () => {
+                usernameDialog.close();
+            });
+        }, 1000);
+    </script>
 </body>
 
 </html>

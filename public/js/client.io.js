@@ -32,7 +32,7 @@ socket.on('timelineClick', (timelineClick) => {
 // Check if the dialog close button is pressed and emit the username
 // to the server.
 $('.close').click(() => {
-    let usernameInput = $('#username-input').val();
+    const usernameInput = $('#username-input').val();
 
     socket.emit('userJoin', usernameInput);
 });
@@ -44,12 +44,12 @@ socket.on('userJoin', (username) => {
 
 // If a user leaves it will be removed from the user list.
 socket.on('userLeave', (username) => {
-    let users = document.getElementById('user-list').getElementsByClassName('username');
-    for (var i = 0; i < users.length; i++) {
-        let user = users[i].innerText;
+    const users = document.getElementById('user-list').getElementsByClassName('username');
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i].innerText;
 
         if (username === user) {
-            var li = users[i].parentElement.parentElement; // Get the li element of the username
+            const li = users[i].parentElement.parentElement; // Get the li element of the username
             document.getElementById('user-list').removeChild(li); // Remove li from the ul
         }
     }

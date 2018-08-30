@@ -13,7 +13,7 @@ app.set('view engine', 'ejs')
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`))
 const io = require('socket.io').listen(server)
 
-var players = {}
+let players = {}
 
 function joinRoom(socket, room) {
     if (socket.room) {
@@ -25,7 +25,7 @@ function joinRoom(socket, room) {
 }
 
 app.get('/:id', (req, res) => {
-    let room = req.params['id']
+    const room = req.params['id']
     // @todo - add socket io join room and leave functionality, not using oop, maybe for later...
     if (room != 'favicon.ico') {
         io.on('connection', (socket) => {
@@ -43,7 +43,7 @@ app.get('/:id', (req, res) => {
 // If user connect to normal page without id
 // => generate id and send him to this page
 app.get('/', (req, res) => {
-    let generatedRoom = guid()
+    const generatedRoom = guid()
     res.writeHead(302, {
         'Location': '/' + generatedRoom
     })
@@ -55,7 +55,7 @@ function broadcastToRoom(room, event) {
 }
 
 io.on('connection', (socket) => {
-    let id = socket.id
+    const id = socket.id
 
     socket.on('playerEvent', (data) => {
         switch (data.event) {
@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
 
     socket.on('userJoin', (username) => {
         if (!username) {
-            let generatedUsername = 'User ' + Object.keys(io.sockets.sockets).length
+            const generatedUsername = 'User ' + Object.keys(io.sockets.sockets).length
             username = generatedUsername
 
             io.to(socket.room).emit('userJoin', generatedUsername)
@@ -97,7 +97,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
-        let username = players[id]
+        const username = players[id]
         io.to(socket.room).emit('userLeave', username)
 
         io.in(socket.room).clients((err, clients) => {

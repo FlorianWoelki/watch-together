@@ -27,18 +27,18 @@ h4 {
 .controls {
     margin-top: 15px;
 }
-
+.controls .btn {
+    background-color: #00BCD4;
+}
 .controls .timeline {
     padding: 1px 0 1px 0;
 }
-
 .controls .timeline .line {
     margin-top: 18px;
     border: 0;
     border-top: 1px solid #343a40;
     position: relative;
 }
-
 .controls .timeline .dot {
     margin-top: -7px;
     height: 13px;

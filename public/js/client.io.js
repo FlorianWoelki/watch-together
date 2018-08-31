@@ -31,7 +31,7 @@ socket.on('timelineClick', (timelineClick) => {
 
 // Check if the dialog close button is pressed and emit the username
 // to the server.
-$('.close').click(() => {
+$('.modal-close').click(() => {
     const usernameInput = $('#username-input').val();
 
     socket.emit('userJoin', usernameInput);
@@ -39,7 +39,15 @@ $('.close').click(() => {
 
 // If a user joins it will append it to the user list.
 socket.on('userJoin', (username) => {
-    $('#user-list').append('<li class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><i class="material-icons mdl-list__item-avatar">person</i><span class="username">' + username + '</span><span class="mdl-list__item-sub-title">Admin</span></span></li>');
+    $('#user-list').append(`
+        <li class="user">
+            <span class="username">
+                <i class="inline-icon material-icons">person_outline</i>
+                ${username}
+            </span>
+            <span class="subtitle">- Admin</span>
+        </li>
+    `);
 });
 
 // If a user leaves it will be removed from the user list.

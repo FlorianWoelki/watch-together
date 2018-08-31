@@ -11,9 +11,10 @@
 
     <title>Watch Together</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
     <!-- Material Design CSS files -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 
     <!-- Custom styles for this template -->
     <link href="css/main.css" rel="stylesheet">
@@ -23,174 +24,143 @@
 </head>
 
 <body>
-    <dialog id="username-dialog" class="mdl-dialog">
-        <h3 class="mdl-dialog__title">Type in your username</h3>
-        <div class="mdl-dialog__content">
+    <div id="username-dialog" class="modal">
+        <div class="modal-content">
+            <h4>Type in your username</h4>
             <form action="#">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="username-input">
-                    <label class="mdl-textfield__label" for="username-input">Username...</label>
+                <div class="input-field">
+                    <input type="text" class="validate" id="username-input" autocomplete="off">
+                    <label for="username-input">Username</label>
                 </div>
             </form>
         </div>
-        <div class="mdl-dialog__actions">
-            <button type="button" class="mdl-button close">Get Started!</button>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-green btn-flat">Get Started!</a>
         </div>
-    </dialog>
-
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer 
-              mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <div class="mdl-layout-spacer"></div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                    mdl-textfield--floating-label mdl-textfield--align-right">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search-input">
-                        <i id="search-input-btn" class="material-icons">search</i>
-                    </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input class="mdl-textfield__input" type="text" placeholder="F0zOQhFQd9k" name="search-input" id="search-input">
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Watch Together</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Home</a>
-                <a class="mdl-navigation__link" href="">About</a>
-                <div class="divider"></div>
-                <a class="mdl-navigation__link" href="">Impressum</a>
-                <a class="mdl-navigation__link" href="">Datenschutz</a>
-            </nav>
-        </div>
-        <main class="mdl-layout__content">
-            <div class="page-content">
-                <div class="mdl-grid">
-                    <!-- Player UI cell -->
-                    <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset">
-                        <div id="player-ui">
-                            <div class="container h-100 d-flex justify-content-center">
-                                <div class="jumbotron my-auto">
-                                    <div id="player"></div>
-
-                                    <div class="controls">
-                                        <div class="mdl-grid">
-                                            <!-- Control buttons -->
-                                            <div class="mdl-cell mdl-cell--3-col">
-                                                <button id="play-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-                                                    <i class="material-icons">play_arrow</i>
-                                                </button>
-                                                <button id="pause-btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-                                                    <i class="material-icons">pause</i>
-                                                </button>
-                                            </div>
-                                            <!-- Timeline -->
-                                            <div class="mdl-cell mdl-cell--9-col">
-                                                <div class="timeline">
-                                                    <div class="line"></div>
-                                                    <div class="dot"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.controls -->
-                                </div>
-                            </div>
-                            <!-- /.container -->
-                        </div>
-                    </div>
-
-                    <!-- User and video info cell -->
-                    <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset">
-                        <div class="container h-100 d-flex justify-content-center">
-                            <div class="jumbotron my-auto">
-                                <% if (locals.room) { %>
-                                    <h4>Room:
-                                        <%= room %>
-                                    </h4>
-                                <% } %>
-                                <h4>Video information</h4>
-                                <!-- Video info -->
-                                <ul id="video-info" class="demo-list-item mdl-list">
-                                    <li class="mdl-list__item">
-                                        <p>Video title:
-                                            <span id="video-title"></span>
-                                        </p>
-                                    </li>
-                                    <li class="mdl-list__item">
-                                        <p>Video ID:
-                                            <span id="video-id"></span>
-                                        </p>
-                                    </li>
-                                </ul>
-                                <!-- /Video info -->
-
-                                <!-- User info -->
-                                <h4>User information</h4>
-                                <h5>Users watching:
-                                    <span id="connected-count">0</span>
-                                </h5>
-                                <ul class="demo-list-two mdl-list" id="user-list">
-                                </ul>
-                                <!-- /User info -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /User and video info cell -->
-                </div>
-                <!-- /.mdl-grid -->
-            </div>
-        </main>
     </div>
 
-    <!-- Material core JavaScript
-================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <header>
+        <nav>
+            <div class="nav-wrapper indigo">
+                <form>
+                    <div class="input-field">
+                        <input type="search" id="search-input" name="search-input" placeholder="F0zOQhFQd9k" required>
+                        <label for="search-input" class="label-icon"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Player UI -->
+        <div class="row">
+            <div class="col s8">
+                <div id="player-ui">
+                    <div class="my-auto">
+                        <div id="player"></div>
+
+                        <div class="controls">
+                            <div class="row">
+                                <!-- Control buttons -->
+                                <div class="col s1">
+                                    <a id="play-btn" class="indigo lighten-2 waves-effect waves-light btn">
+                                        <i class="material-icons">play_arrow</i>
+                                    </a>
+                                </div>
+                                <div class="col s1">
+                                    <a id="pause-btn" class="indigo lighten-2 waves-effect waves-light btn">
+                                        <i class="material-icons">stop</i>
+                                    </a>
+                                </div>
+                                <!-- Timeline -->
+                                <div class="col s8">
+                                    <div class="timeline">
+                                        <div class="line"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <% if (locals.room) { %>
+                    <h3>Room:
+                        <%= room %>
+                    </h3>
+                    <% } %>
+                        <h4>Video information</h4>
+                        <!-- Video info -->
+                        <ul id="video-info" class="demo-list-item mdl-list">
+                            <li class="mdl-list__item">
+                                <p>Video title:
+                                    <span id="video-title"></span>
+                                </p>
+                            </li>
+                            <li class="mdl-list__item">
+                                <p>Video ID:
+                                    <span id="video-id"></span>
+                                </p>
+                            </li>
+                        </ul>
+                        <!-- /Video info -->
+
+                        <!-- User info -->
+                        <h4>User information</h4>
+                        <ul id="user-info">
+                            <li>
+                                <p>User watching:
+                                    <span id="connected-count">0</span>
+                                </p>
+                            </li>
+                        </ul>
+                        <ul id="user-list"></ul>
+                        <!-- /User info -->
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <!-- Custom scripts -->
     <script src="js/socket.io.js"></script>
     <script src="js/client.io.js"></script>
     <script>
-        // This function will check, if you clicked on search and then
-        // it will parse the video link and reload the page with the correct
-        // video.
-        $('#search-input-btn').click(function (event) {
-            const searchInput = $('#search-input').val();
-            if (searchInput.length == 0) {
-                return;
-            }
-            player.loadVideoById(searchInput);
+        $(document).ready(function () {
+            const usernameDialog = $('.modal');
 
-            setTimeout(() => {
-                changeVideoInformation();
-            }, 2000);
-        });
+            usernameDialog.modal();
+            usernameDialog.modal('open');
 
-        // Check if in searchbar enter key is pressed
-        $('#search-input').keypress((e) => {
-            if (e.which === 13) { // Pressed 'enter' key
-                $('#search-input-btn').click();
-            }
-        });
-
-        // Set a timeout before the dialog pops out, because the style needs
-        // to be load.
-        setTimeout(() => {
-            var usernameDialog = document.querySelector('#username-dialog');
-            usernameDialog.showModal();
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     e.preventDefault();
                 }
             });
+        });
 
-            usernameDialog.querySelector('.close').addEventListener('click', () => {
-                usernameDialog.close();
-            });
-        }, 1000);
+        // Check if in searchbar enter key is pressed
+        $('#search-input').keypress((e) => {
+            if (e.which === 13) { // Pressed 'enter' key
+                e.preventDefault();
+
+                const searchInput = $('#search-input').val();
+                if (searchInput.length == 0) {
+                    return;
+                }
+                player.loadVideoById(searchInput);
+
+                setTimeout(() => {
+                    changeVideoInformation();
+                }, 2000);
+            }
+        });
     </script>
 </body>
 

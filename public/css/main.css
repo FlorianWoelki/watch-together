@@ -1,38 +1,31 @@
-#search-btn {
-    color: #28a745;
+html,
+body {
+    font-family: 'Roboto';
 }
 
-#search-btn:hover {
-    color: white;
-}
-
-.mdl-grid {
+.container {
     margin-top: 50px;
 }
 
-#video-info {
+#video-info, #user-info {
     padding-top: 0;
     padding-bottom: 0;
 }
-#video-info li p {
+#video-info li p, #user-info li p {
     font-weight: 100;
     font-size: 20px;
 }
 
-.divider {
-    border-top: 1px solid #cfcfcf;
-}
-
-h4 {
+h3, h4 {
     color: rgb(63,81,181);
+    font-size: 28px;
 }
-
-h5 {
-    font-weight: 100;
+h4 {
+    margin-top: 50px;
 }
 
 .controls {
-    margin-bottom: 2px;
+    margin-top: 15px;
 }
 
 .controls .timeline {
@@ -40,14 +33,14 @@ h5 {
 }
 
 .controls .timeline .line {
-    margin-top: 25px;
+    margin-top: 18px;
     border: 0;
     border-top: 1px solid #343a40;
     position: relative;
 }
 
 .controls .timeline .dot {
-    margin-top: -9px;
+    margin-top: -7px;
     height: 13px;
     width: 13px;
     position: relative;
@@ -61,3 +54,30 @@ h5 {
 #search-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
 }
+#search-input:focus::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+#search-input {
+    color: #fff;
+}
+#search-input:focus {
+    color: #000;
+}
+
+.modal {
+    width: 15%;
+}
+.modal form {
+    margin-top: 55px;
+}
+
+#user-list {
+    font-size: 16px;
+    font-weight: 300;
+}
+#user-list .subtitle {
+    font-weight: 100;
+}
+.inline-icon {
+    vertical-align: bottom;
+ }

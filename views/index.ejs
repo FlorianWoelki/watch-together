@@ -133,33 +133,29 @@
     <script src="js/client.io.js"></script>
     <script>
         $(document).ready(function () {
-            const usernameDialog = $('.modal');
+            $('.modal').modal();
+            
+            $('#username-dialog').modal({
+                dismissible: false,
+            });
+            $('#username-dialog').modal('open');
 
-            usernameDialog.modal();
-            usernameDialog.modal('open');
-
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
+            // Check if in searchbar enter key is pressed
+            $('#search-input').keypress((e) => {
+                if (e.which === 13) { // Pressed 'enter' key
                     e.preventDefault();
+
+                    const searchInput = $('#search-input').val();
+                    if (searchInput.length == 0) {
+                        return;
+                    }
+                    player.loadVideoById(searchInput);
+
+                    setTimeout(() => {
+                        changeVideoInformation();
+                    }, 2000);
                 }
             });
-        });
-
-        // Check if in searchbar enter key is pressed
-        $('#search-input').keypress((e) => {
-            if (e.which === 13) { // Pressed 'enter' key
-                e.preventDefault();
-
-                const searchInput = $('#search-input').val();
-                if (searchInput.length == 0) {
-                    return;
-                }
-                player.loadVideoById(searchInput);
-
-                setTimeout(() => {
-                    changeVideoInformation();
-                }, 2000);
-            }
         });
     </script>
 </body>

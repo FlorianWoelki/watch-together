@@ -45,7 +45,7 @@ socket.on('userJoin', (username) => {
                 <i class="inline-icon material-icons">person_outline</i>
                 ${username}
             </span>
-            <span class="subtitle">- Admin</span>
+            <span class="subtitle"><b>- Admin</b></span>
         </li>
     `);
 });

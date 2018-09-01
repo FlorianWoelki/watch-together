@@ -27,7 +27,7 @@ You just need to navigate to localhost:5000 or to your website and you are good 
 | Lib | Link |
 | ------ | ------ |
 |Node JS|https://nodejs.org/en/|
-|Material Design Library|https://getmdl.io/|
+|MaterializeCSS|https://materializecss.com/|
 |SocketIO|https://socket.io/|
 
 ## Authors

@@ -57,26 +57,26 @@
         <div class="container">
             <!-- Player UI -->
             <div class="row">
-                <div class="col s8">
+                <div class="col s12 m12 l8">
                     <div id="player-ui">
                         <div class="my-auto">
-                            <div id="player"></div>
+                            <div id="player" class="yt-player"></div>
 
                             <div class="controls">
                                 <div class="row">
                                     <!-- Control buttons -->
-                                    <div class="col s1">
+                                    <div class="col s2 m1 l1">
                                         <a id="play-btn" class="waves-effect waves-light btn">
                                             <i class="material-icons">play_arrow</i>
                                         </a>
                                     </div>
-                                    <div class="col s1">
+                                    <div class="col s2 m1 l1">
                                         <a id="pause-btn" class="waves-effect waves-light btn">
                                             <i class="material-icons">stop</i>
                                         </a>
                                     </div>
                                     <!-- Timeline -->
-                                    <div class="col s8">
+                                    <div class="col s8 m8 l8">
                                         <div class="timeline">
                                             <div class="line"></div>
                                             <div class="dot"></div>
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s4">
+                <div class="col s12 m12 l3 offset-l1">
                     <% if (locals.room) { %>
                         <h3>Room:
                             <%= room %>

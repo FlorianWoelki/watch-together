@@ -119,3 +119,11 @@ h4 {
         height: 325px;
     }
 }
+
+.volume-slider .range-field {
+    margin: 0;
+    margin-top: 3px;
+}
+.volume-slider .thumb .value {
+    background-color: #00BCD4;
+}

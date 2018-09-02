@@ -3,6 +3,7 @@ const timeline = $('.timeline');
 const timelineDot = $('.timeline .dot');
 const playButton = $('#play-btn');
 const pauseButton = $('#pause-btn');
+const volume = $('#volume');
 
 // This code will setup socket io for the client.
 const socket = io.connect();
@@ -148,6 +149,12 @@ playButton.click((event) => {
 // it will tell the other clients to puase the video.
 pauseButton.click((event) => {
     onPauseClicked();
+});
+
+volume.on('input', (event) => {
+    const volume = $('.volume-slider span .value').html();
+    // @todo - change volume of youtube player
+    console.log(volume);
 });
 
 function changeVideoInformation() {

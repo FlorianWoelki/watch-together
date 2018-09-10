@@ -99,6 +99,8 @@ function onPlayerReady(event) {
     startTimelineLoop();
 
     changeVideoInformation();
+
+    player.setVolume(50);
 }
 
 // This method gets called whenever the state of the player changes.
@@ -153,8 +155,7 @@ pauseButton.click((event) => {
 
 volume.on('input', (event) => {
     const volume = $('.volume-slider span .value').html();
-    // @todo - change volume of youtube player
-    console.log(volume);
+    player.setVolume(volume);
 });
 
 function changeVideoInformation() {

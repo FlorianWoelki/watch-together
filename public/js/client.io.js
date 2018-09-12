@@ -95,12 +95,11 @@ function onYouTubeIframeAPIReady() {
 
 // This method gets called when the player is ready to go.
 function onPlayerReady(event) {
-    event.target.setVolume(5);
     startTimelineLoop();
 
     changeVideoInformation();
 
-    player.setVolume(50);
+    event.target.setVolume(50);
 }
 
 // This method gets called whenever the state of the player changes.

@@ -65,15 +65,15 @@ socket.on('userLeave', (username) => {
 })
 
 // This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
+let tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
+let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
-var player;
+let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '100%',
@@ -133,10 +133,10 @@ function startTimelineLoop() {
 // Whenever a user clicks on the timeline to jump to a position,
 // the dot and the movie will jump to this position.
 timeline.click(function (event) {
-    var offset = $(this).offset();
-    var x = event.pageX - offset.left;
-    var timelineClick = x * player.getDuration() / $(this).width() - 2;
-    //player.seekTo(timelineClick);
+    const offset = $(this).offset();
+    const x = event.pageX - offset.left;
+    const timelineClick = x * player.getDuration() / $(this).width() - 2;
+    
     socket.emit('playerEvent', { 'event': 'time', 'timelineClick': timelineClick });
 });
 

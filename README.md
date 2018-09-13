@@ -22,6 +22,22 @@ Now you have a fully working project. You can start the project in your director
 npm start
 ```
 
+#### Running with Docker
+Navigate to your favourite directory and clone the repository.
+```sh
+git clone https://github.com/FlorianWoelki/watch-together.git
+```
+
+Now you need to build the image. Make sure that you are in the project directory.
+```sh
+docker build -t <username>/watch-together .
+```
+
+Let's run the docker container.
+```sh
+docker run -p 5000:5000 -d <username>/watch-together
+```
+
 The server is now up and running.
 You just need to navigate to localhost:5000 or to your website and you are good to go!
 

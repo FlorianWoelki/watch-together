@@ -6,7 +6,7 @@ So please notice, that I am not the founder of this. This project is just for le
 ## Test the project
 You can test it on the github page or you can install it by yourself (Coming Soon).
 Just do the following:
-### Installing
+### Running without Docker
 Navigate to your favourite directory and clone the repository.
 ```sh
 git clone https://github.com/FlorianWoelki/watch-together.git
@@ -22,7 +22,7 @@ Now you have a fully working project. You can start the project in your director
 npm start
 ```
 
-#### Running with Docker
+### Running with Docker
 Navigate to your favourite directory and clone the repository.
 ```sh
 git clone https://github.com/FlorianWoelki/watch-together.git
@@ -39,6 +39,7 @@ docker run -p 5000:5000 -d <username>/watch-together
 ```
 
 The server is now up and running.
+
 You just need to navigate to localhost:5000 or to your website and you are good to go!
 
 ## Tech

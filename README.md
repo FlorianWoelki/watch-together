@@ -46,4 +46,5 @@ This project is licensed to the MIT license.
 
 ## ToDo
 - [ ] Add Vue?
-- [ ] Add Dockerfile
+- [x] Add Dockerfile
+- [ ] Add docker-compose file for database?

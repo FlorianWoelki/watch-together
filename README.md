@@ -29,12 +29,12 @@ git clone https://github.com/FlorianWoelki/watch-together.git
 ```
 
 Now you need to build the image. Make sure that you are in the project directory.
-```sh
-docker build -t <username>/watch-together .
 ```
+docker build -t <username>/watch-together .
+``` 
 
 Let's run the docker container.
-```sh
+```
 docker run -p 5000:5000 -d <username>/watch-together
 ```
 

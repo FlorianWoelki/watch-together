@@ -17,12 +17,12 @@ if (process.env.DB_SOCKET) {
     })
 }
 
-/*connection.connect((err) => {
+connection.connect((err) => {
     if (err) {
         return console.error('Error: ' + err)
     }
 
     console.log('Connected to MySQL server.')
-})*/
+})
 
 module.exports = connection

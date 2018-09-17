@@ -48,6 +48,8 @@ You just need to navigate to localhost:5000 or to your website and you are good 
 |Node JS|https://nodejs.org/en/|
 |MaterializeCSS|https://materializecss.com/|
 |SocketIO|https://socket.io/|
+|Mocha|https://mochajs.org/|
+|Chai|https://www.chaijs.com/|
 
 ## Authors
 * **[FlorianWoelki](https://github.com/FlorianWoelki)** - *Initial work*
